@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
-import index from "./index.css"
 import * as Yup from "yup";
 import logo from "./logo1.png";
 import PasswordStrength from "./PasswordStrength.js";
@@ -64,6 +63,7 @@ function App() {
   };
   return (
     <>
+        <style>{'body { background-color: #e8e8e8; }'}</style>
       <Container maxWidth="sm">
         <Avatar alt="CrystalWebPro" src={logo} className={classes.small} />
       </Container>
