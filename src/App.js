@@ -168,11 +168,11 @@ function App() {
                 className={classes.field}
                 onChange={(e) => {
                   handleChange(e);
-                  {
+                  
                     e.target.value.length
                       ? setDisplay(true)
                       : setDisplay(false);
-                  }
+                  
                 }}
                 name="password"
                 variant="outlined"
