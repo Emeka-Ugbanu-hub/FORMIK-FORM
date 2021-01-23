@@ -37,7 +37,7 @@ const useStyles = makeStyles(() => ({
 {/\d/.test(password) ? <Check style={{color:`#fff`}}/> : <Close style={{color:`#fff`}}/>}
 </Fab>
 </ListItemIcon>
-<ListIte primary="must contain a digit e.g 0,1,2 etc"/>
+<ListItem primary="must contain a digit e.g 0,1,2 etc"/>
 </ListItem>
 <ListItem>
 <ListItemIcon>
