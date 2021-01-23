@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import index from "./index.css";
 import logo from "./logo1.png";
 import firebase from "firebase";
 import PasswordStrength from "./PasswordStrength.js";
@@ -18,9 +17,14 @@ import {
   Typography,
   Box,
 } from "@material-ui/core";
-import { Visibility, VisibilityOff, Person,Facebook,Twitter } from "@material-ui/icons";
-import{ ReactComponent as Google } from "./search.svg";
-
+import {
+  Visibility,
+  VisibilityOff,
+  Person,
+  Facebook,
+  Twitter,
+} from "@material-ui/icons";
+import { ReactComponent as Google } from "./search.svg";
 
 const useStyles = makeStyles(() => ({
   default: {
@@ -41,9 +45,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 const SignupSchema = Yup.object().shape({
-  first: Yup.string().min(2,"Required field"),
-  last: Yup.string().min(7,"Required field"),
-  email: Yup.string().email(`please input a valid email`).min(4,"Required field"),
+  first: Yup.string().min(2, "Required field"),
+  last: Yup.string().min(7, "Required field"),
+  email: Yup.string()
+    .email(`please input a valid email`)
+    .min(4, "Required field"),
   password: Yup.string().required("This field must be filled"),
 });
 function App() {
@@ -54,27 +60,8 @@ function App() {
     setVisible(!visible);
   };
   const handleRequest = () => {
-    var provider = new firebase.auth.FacebookAuthProvider();
-    firebase
-  .auth()
-  .signInWithPopup(provider)
-  .then((result) => {
-    /** @type {firebase.auth.OAuthCredential} */
-    var credential = result.credential;
-
-    // The signed-in user info.
-    var user = result.user;
-
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    var accessToken = credential.accessToken;
-
-    // ...
-  })
-  .catch((error) => {
-   alert(error) 
-  });
-
-  }
+    alert("l");
+  };
   return (
     <>
       <Container maxWidth="sm">
@@ -90,33 +77,55 @@ function App() {
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
-         alert(`Sucess`)
+          alert(`Sucess`);
         }}
       >
-        {({ handleSubmit, handleBlur, values, handleChange, errors ,touched}) => (
+        {({
+          handleSubmit,
+          handleBlur,
+          values,
+          handleChange,
+          errors,
+          touched,
+        }) => (
           <form onSubmit={handleSubmit}>
-  <Container className={classes.default} maxWidth="sm">
+            <Container className={classes.default} maxWidth="sm">
               <Person style={{ fontSize: "50px" }}></Person>
-              <Button variant="contained"  fullWidth={true} disabled >
-      <SvgIcon>
-      <Google/>
-      </SvgIcon>
-      <Facebook onclick={handleRequest} style={{ fontSize: "35px",color:"#365899",marginLeft:`${2}em` }}/>
-      <Twitter style={{ fontSize: "35px",color:"#1DA1F2",marginLeft:`${2}em`  }}/>
-      </Button>
-      <Box m={1} p={1} display="flex">
-        <Box width="50%" p={1}>
-              <Divider light={true} style={{ background: "#000" }}/>
-              </Box>
-              <Box p={1}>
-              <Typography align="center" variant="body1">OR </Typography>
-              </Box>
-              <Box width="50%" p={1}>
-              <Divider light={true} style={{ background: "#000" }}/>
-              </Box>
+              <Button variant="contained" fullWidth={true} disabled>
+                <SvgIcon>
+                  <Google />
+                </SvgIcon>
+                <Facebook
+                  onclick={handleRequest}
+                  style={{
+                    fontSize: "35px",
+                    color: "#365899",
+                    marginLeft: `${2}em`,
+                  }}
+                />
+                <Twitter
+                  style={{
+                    fontSize: "35px",
+                    color: "#1DA1F2",
+                    marginLeft: `${2}em`,
+                  }}
+                />
+              </Button>
+              <Box m={1} p={1} display="flex">
+                <Box width="50%" p={1}>
+                  <Divider light={true} style={{ background: "#000" }} />
+                </Box>
+                <Box p={1}>
+                  <Typography align="center" variant="body1">
+                    OR{" "}
+                  </Typography>
+                </Box>
+                <Box width="50%" p={1}>
+                  <Divider light={true} style={{ background: "#000" }} />
+                </Box>
               </Box>
               <TextField
-                error={errors.first }
+                error={errors.first}
                 type="text"
                 helperText={errors.first}
                 className={classes.field}
@@ -129,7 +138,7 @@ function App() {
               />
 
               <TextField
-                error={errors.last }
+                error={errors.last}
                 type="text"
                 onChange={handleChange}
                 helperText={errors.last}
@@ -143,7 +152,7 @@ function App() {
               <TextField
                 error={errors.email}
                 type="email"
-                helperText={errors.email }
+                helperText={errors.email}
                 className={classes.field}
                 onChange={handleChange}
                 name="email"
@@ -159,10 +168,13 @@ function App() {
                 type={visible ? "text" : "password"}
                 className={classes.field}
                 onChange={(e) => {
-                       handleChange(e);
-                     {e.target.value.length ?  setDisplay(true) : setDisplay(false)};
-                }
-                }
+                  handleChange(e);
+                  {
+                    e.target.value.length
+                      ? setDisplay(true)
+                      : setDisplay(false);
+                  }
+                }}
                 name="password"
                 variant="outlined"
                 label="Password"
@@ -177,9 +189,7 @@ function App() {
                   ),
                 }}
               />
-
               {display ? <PasswordStrength password={values.password} /> : ""}
-
               <Button
                 type="submit"
                 className={classes.field}
