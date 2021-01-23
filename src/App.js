@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
+import index from "./index.css"
 import * as Yup from "yup";
 import logo from "./logo1.png";
 import PasswordStrength from "./PasswordStrength.js";
