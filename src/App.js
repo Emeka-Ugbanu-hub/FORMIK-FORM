@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import logo from "./logo1.png";
-import firebase from "firebase";
 import PasswordStrength from "./PasswordStrength.js";
 import {
   TextField,
