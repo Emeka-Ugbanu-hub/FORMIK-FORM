@@ -89,7 +89,7 @@ function App() {
           touched,
         }) => (
           <form onSubmit={handleSubmit}>
-            <Container className={classes.default} maxWidth="sm">
+            <Container className={classes.default} fixed>
               <Person style={{ fontSize: "50px" }}></Person>
               <Button variant="contained" fullWidth={true} disabled>
                 <SvgIcon>
